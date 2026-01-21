@@ -11,29 +11,14 @@ from guardrails import Guardrails
 
 
 class RAGPipeline:
-    """
-    Complete RAG pipeline implementation:
-    1. Query embedding
-    2. Vector similarity search
-    3. Context retrieval
-    4. Prompt augmentation
-    5. Response generation with guardrails
-    """
+
     
     def __init__(self, 
                  embedding_model: str = "BAAI/bge-base-en-v1.5",
                  llm_model: str = "llama3",
                  vector_store: Optional[VectorStore] = None,
                  min_confidence: float = 0.5):
-        """
-        Initialize the RAG pipeline.
-        
-        Args:
-            embedding_model: Sentence Transformers model name
-            llm_model: Ollama model name (e.g., "llama3", "mistral")
-            vector_store: Pre-initialized vector store (optional)
-            min_confidence: Minimum confidence threshold for retrieval
-        """
+
         self.embedding_generator = EmbeddingGenerator(model_name=embedding_model)
         self.llm_model = llm_model
         self.guardrails = Guardrails(min_confidence=min_confidence)
@@ -45,17 +30,7 @@ class RAGPipeline:
             self.vector_store = vector_store
     
     def build_prompt(self, query: str, contexts: List[Dict], max_context_length: int = 2000) -> str:
-        """
-        Build augmented prompt with retrieved contexts.
-        
-        Args:
-            query: User query
-            contexts: List of context dictionaries with 'text' and metadata
-            max_context_length: Maximum characters of context to include
-            
-        Returns:
-            Formatted prompt string
-        """
+
         # Format contexts
         context_texts = []
         total_length = 0
@@ -103,16 +78,7 @@ Answer (based ONLY on the provided documents):"""
         return prompt
     
     def retrieve_contexts(self, query: str, top_k: int = 5) -> List[Tuple[Dict, float]]:
-        """
-        Retrieve relevant contexts for a query.
-        
-        Args:
-            query: User query
-            top_k: Number of contexts to retrieve
-            
-        Returns:
-            List of (metadata, similarity_score) tuples
-        """
+
         # Generate query embedding
         query_embedding = self.embedding_generator.generate_query_embedding(query)
         
@@ -123,18 +89,8 @@ Answer (based ONLY on the provided documents):"""
     
     def generate_response(self, query: str, top_k: int = 5, 
                          use_guardrails: bool = True) -> Dict:
-        """
-        Complete RAG flow: retrieve contexts and generate response.
-        
-        Args:
-            query: User query
-            top_k: Number of contexts to retrieve
-            use_guardrails: Whether to apply guardrails
-            
-        Returns:
-            Dictionary with response, sources, and metadata
-        """
-        # Step 1: Retrieve contexts
+
+       
         retrieval_results = self.retrieve_contexts(query, top_k=top_k)
         
         if not retrieval_results:
@@ -152,7 +108,7 @@ Answer (based ONLY on the provided documents):"""
         contexts = [meta for meta, score in retrieval_results]
         scores = [score for meta, score in retrieval_results]
         
-        # Step 2: Apply confidence filtering
+       
         if use_guardrails:
             filtered_results = self.guardrails.filter_low_confidence(retrieval_results)
             if not filtered_results:
@@ -170,10 +126,10 @@ Answer (based ONLY on the provided documents):"""
             contexts = [meta for meta, score in filtered_results]
             scores = [score for meta, score in filtered_results]
         
-        # Step 3: Build augmented prompt
+    
         prompt = self.build_prompt(query, contexts)
         
-        # Step 4: Generate response using Ollama
+      
         try:
             # Try chat API first (preferred), fallback to generate
             try:
@@ -202,7 +158,7 @@ Answer (based ONLY on the provided documents):"""
         except Exception as e:
             response_text = f"Error generating response: {str(e)}. Please ensure Ollama is running and the model '{self.llm_model}' is installed. Run: ollama pull {self.llm_model}"
         
-        # Step 5: Validate response with guardrails
+  
         validation = None
         if use_guardrails:
             validation = self.guardrails.validate_response(response_text, contexts, scores)
@@ -221,12 +177,7 @@ Answer (based ONLY on the provided documents):"""
         }
     
     def add_documents(self, chunks: List[Dict]):
-        """
-        Add document chunks to the vector store.
-        
-        Args:
-            chunks: List of chunk dictionaries with 'text' and metadata
-        """
+      
         texts = [chunk['text'] for chunk in chunks]
         
         # Generate embeddings
