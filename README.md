@@ -29,7 +29,6 @@
 - [Architecture](#-architecture)
 - [Tech Stack](#-tech-stack)
 - [Use Cases](#-use-cases)
-- [Safety & Guardrails](#-safety--guardrails)
 - [Project Structure](#-project-structure)
 - [Author](#-author)
 - [License](#-license)
@@ -106,6 +105,7 @@ streamlit run app.py
 
 ## 🛠 Architecture
 
+```mermaid
 flowchart TD
     %% USER INTERACTION
     U[🧑 User Query] --> QE[🔢 Query Embedding]
@@ -124,4 +124,71 @@ flowchart TD
     %% OUTPUT
     GR --> A[✅ Final Answer]
     A --> S[📚 Source References]
+```
+## 🧩 Tech Stack
+
+### **Core**
+- **Python** – Primary programming language
+- **LangChain** – RAG orchestration and chaining
+- **Streamlit** – Interactive web UI
+
+### **Embeddings & Vector Search**
+- **Sentence Transformers** – Semantic text embeddings
+- **FAISS** – High-performance vector similarity search
+
+### **LLM Inference**
+- **Mistral / Phi / Gemma** – Open-source large language models
+- **Ollama** – Local LLM serving and inference
+
+### **Document Processing**
+- **PyPDF** – PDF parsing
+- **Recursive Text Splitter** – Efficient document chunking
+
+### **Safety & Guardrails**
+- Custom prompt constraints
+- Context-only answer enforcement
+- Confidence thresholding & fallback responses
+
+---
+
+## 🎯 Use Cases
+
+- **Academic Research** – Question answering over research papers and notes  
+- **Enterprise Knowledge Base** – Internal document assistants for teams  
+- **Education** – Course material and syllabus-based Q&A  
+- **Legal & Compliance** – Source-verifiable and grounded responses  
+- **On-Prem AI Systems** – Fully offline, open-source RAG deployment  
+
+---
+
+## 📂 Project Structure
+
+```text
+RAG/
+├── app.py                 # Streamlit UI
+├── rag_pipeline.py        # Core RAG pipeline
+├── document_processor.py  # Document ingestion and chunking
+├── embeddings.py          # Embedding generation
+├── vector_store.py        # FAISS vector database
+├── guardrails.py          # Safety controls and filtering
+├── documents/             # Input documents
+├── vector_store/          # Saved FAISS index
+└── requirements.txt       # Project dependencies
+```
+## 👨‍💻 Author
+
+**Aayush Vishwakarma**  
+- 💼 UsefulBI Corporation  
+- 📍 India  
+- 🔗 GitHub: https://github.com/Aayushhh07  
+- 🔗 LinkedIn: https://www.linkedin.com/in/aayush-vishwakarma-68a8a92a1  
+- 📬 Email: aayushvishwakarma93@gmail.com  
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.  
+You are free to use, modify, and distribute this project for academic, educational, and research purposes.
+
 
