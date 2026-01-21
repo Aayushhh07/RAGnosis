@@ -175,6 +175,8 @@ RAG/
 ├── vector_store/          # Saved FAISS index
 └── requirements.txt       # Project dependencies
 ```
+---
+
 ## 👨‍💻 Author
 
 **Aayush Vishwakarma**  
