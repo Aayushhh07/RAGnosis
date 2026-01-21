@@ -129,7 +129,6 @@ flowchart TD
 
 ### **Core**
 - **Python** – Primary programming language
-- **LangChain** – RAG orchestration and chaining
 - **Streamlit** – Interactive web UI
 
 ### **Embeddings & Vector Search**
@@ -137,12 +136,10 @@ flowchart TD
 - **FAISS** – High-performance vector similarity search
 
 ### **LLM Inference**
-- **Mistral / Phi / Gemma** – Open-source large language models
 - **Ollama** – Local LLM serving and inference
 
 ### **Document Processing**
 - **PyPDF** – PDF parsing
-- **Recursive Text Splitter** – Efficient document chunking
 
 ### **Safety & Guardrails**
 - Custom prompt constraints
