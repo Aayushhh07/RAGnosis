@@ -13,24 +13,15 @@ from docx import Document
 
 
 class DocumentProcessor:
-    """
-    Processes documents from various formats (PDF, TXT, Markdown) 
-    and splits them into chunks for embedding.
-    """
+   
     
     def __init__(self, chunk_size: int = 512, chunk_overlap: int = 50):
-        """
-        Initialize the document processor.
-        
-        Args:
-            chunk_size: Maximum number of characters per chunk
-            chunk_overlap: Number of characters to overlap between chunks
-        """
+       
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
     
     def load_pdf(self, file_path: str) -> str:
-        """Extract text from a PDF file."""
+        
         text = ""
         try:
             with open(file_path, 'rb') as file:
@@ -63,15 +54,7 @@ class DocumentProcessor:
             raise Exception(f"Error reading Markdown file {file_path}: {str(e)}")
     
     def load_document(self, file_path: str) -> str:
-        """
-        Load a document based on its file extension.
         
-        Args:
-            file_path: Path to the document file
-            
-        Returns:
-            Extracted text content
-        """
         file_path = Path(file_path)
         extension = file_path.suffix.lower()
         
@@ -85,16 +68,7 @@ class DocumentProcessor:
             raise ValueError(f"Unsupported file type: {extension}")
     
     def chunk_text(self, text: str, metadata: Dict = None) -> List[Dict]:
-        """
-        Split text into overlapping chunks.
         
-        Args:
-            text: Text to chunk
-            metadata: Metadata to attach to each chunk
-            
-        Returns:
-            List of chunk dictionaries with text and metadata
-        """
         if not text.strip():
             return []
         
@@ -147,15 +121,7 @@ class DocumentProcessor:
         return chunks
     
     def process_directory(self, directory_path: str) -> List[Dict]:
-        """
-        Process all supported documents in a directory.
-        
-        Args:
-            directory_path: Path to directory containing documents
-            
-        Returns:
-            List of all chunks from all documents with metadata
-        """
+       
         directory = Path(directory_path)
         all_chunks = []
         
@@ -183,15 +149,7 @@ class DocumentProcessor:
         return all_chunks
     
     def process_files(self, file_paths: List[str]) -> List[Dict]:
-        """
-        Process a list of specific files.
-        
-        Args:
-            file_paths: List of file paths to process
-            
-        Returns:
-            List of all chunks from all files with metadata
-        """
+       
         all_chunks = []
         
         for file_path in file_paths:
