@@ -88,7 +88,6 @@ The system is built entirely using **open-source models and frameworks**, making
   <b>Document Loading & Configuration Interface</b>
 </p>
 
----
 
 <p align="center">
   <img src="screenshots/answer.png" alt="RAGnosis Answer Screen" width="85%"/>
