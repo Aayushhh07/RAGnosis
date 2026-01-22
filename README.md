@@ -115,11 +115,16 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
-### 4️⃣ Add Documents
+### 4️⃣ Pull Ollama Model
+```bash
+ollama serve
+ollama pull llama3
+```
+### 5️⃣ Add Documents
 ```bash
 documents/
 ```
-### 5️⃣ Run the Application
+### 6️⃣ Run the Application
 ```bash
 streamlit run app.py
 ```
