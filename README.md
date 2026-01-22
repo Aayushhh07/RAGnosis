@@ -25,6 +25,7 @@
 ## 📑 Table of Contents
 - [About](#-about)
 - [Features](#-features)
+- [Application Screenshots](#-application-screenshots)
 - [Quickstart](#-quickstart)
 - [Architecture](#-architecture)
 - [Tech Stack](#-tech-stack)
@@ -75,6 +76,27 @@ The system is built entirely using **open-source models and frameworks**, making
 - Simple, clean **Streamlit UI**
 - Real-time question answering
 - Transparent source visibility
+
+---
+## 🖼 Application Screenshots
+
+<p align="center">
+  <img src="screenshots/home.png" alt="RAGnosis Home Screen" width="85%"/>
+</p>
+
+<p align="center">
+  <b>Document Loading & Configuration Interface</b>
+</p>
+
+---
+
+<p align="center">
+  <img src="screenshots/answer.png" alt="RAGnosis Answer Screen" width="85%"/>
+</p>
+
+<p align="center">
+  <b>Context-Aware Question Answering with Source Attribution</b>
+</p>
 
 ---
 
