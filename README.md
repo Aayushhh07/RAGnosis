@@ -133,24 +133,20 @@ streamlit run app.py
 
 ```mermaid
 flowchart TD
-    %% USER INTERACTION
-    U[🧑 User Query] --> QE[🔢 Query Embedding]
+    A[📄 Your Documents] --> B[🔧 Text Processing]
+    B --> C[✂️ Smart Chunking]
+    C --> D[🧮 Generate Embeddings]
+    D --> E[🗄️ Vector Database]
 
-    %% VECTOR SEARCH
-    QE --> VS[(🗂 FAISS Vector Store)]
-    VS --> RC[📄 Retrieved Chunks]
-
-    %% PROMPTING
-    RC --> PA[🧠 Prompt Augmentation]
-
-    %% LLM
-    PA --> LLM[🤖 Open-Source LLM]
-    LLM --> GR[🛡 Guardrails & Filtering]
-
-    %% OUTPUT
-    GR --> A[✅ Final Answer]
-    A --> S[📚 Source References]
+    F[❓ Your Question] --> G[🧮 Query Embedding]
+    G --> H[🔍 Similarity Search]
+    E --> H
+    H --> I[📋 Retrieved Contexts]
+    I --> J[🤖 AI Response Generation]
+    J --> K[🛡️ Guardrails Check]
+    K --> L[✅ Final Answer + Sources]
 ```
+
 ## 🧩 Tech Stack
 
 ### **Core**
